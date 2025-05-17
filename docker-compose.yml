@@ -1,0 +1,24 @@
+services:
+  postgres:
+    container_name: blog_database_container
+    image: postgres:15.3
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: Lolo123!
+      POSTGRES_USER: perico_developer
+      POSTGRES_DB: blog_database
+    networks:
+      - postgres_db_network
+
+  adminer:
+    container_name: adminer_container
+    image: adminer:latest
+    ports:
+      - "8888:8080"
+    networks:
+      - postgres_db_network
+
+networks:
+  postgres_db_network:
+    external: true
